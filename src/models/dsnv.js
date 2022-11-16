@@ -1,0 +1,3 @@
+function danhsachnhanvien() {
+    this.arr = [];
+}
