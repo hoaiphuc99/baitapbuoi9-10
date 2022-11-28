@@ -1,4 +1,5 @@
 var dsnv = new danhsachnhanvien();
+getLocalStorage();
 function getEl(id) {
     return document.getElementById(id);
 }
@@ -103,6 +104,34 @@ getEl("btnCapNhat").addEventListener("click", function () {
     getEl("tknv").disabled = false;
     getEl("btnThemNV").style.display = "inline-block";
 });
+getEl("btnTimNV").onclick = function () {
+    renderTable([]);
+    var loainv = getEl("timloainv").value * 1;
+    switch (loainv) {
+        case 1:
+            timloaiNV("Xuất sắc");
+            break;
+        case 2:
+            timloaiNV("Giỏi");
+            break;
+        case 3:
+            timloaiNV("Khá");
+            break;
+        case 4:
+            timloaiNV("Trung bình");
+            break;
+    }
+
+}
+function timloaiNV(loai) {
+    var nhomLoaiNV = [];
+    for (var i = 0; i < dsnv.arr.length; i++) {
+        if (dsnv.arr[i].xepLoai == loai) {
+            nhomLoaiNV.push(dsnv.arr[i]);
+        }
+    }
+    renderTable(nhomLoaiNV);
+}
 function setLocalStorage() {
 
     var dataString = JSON.stringify(dsnv.arr);
